@@ -9,7 +9,7 @@ public:
          
          for(int j=0;j<n;j++)
         {
-            if(i-j == x-y && grid[i][j]=='Q') return false;
+            if(i-j == x-y && grid[i][j]=='Q') return false; //check the diagonal elements at left region which are previously filled
             if(i+j==x+y && grid[i][j]=='Q')  return false;
         }
         }
@@ -18,14 +18,14 @@ public:
     }
 
 
-    bool Nqueen(int row, vector<string>&grid,vector<vector<string>>&res)
+    void Nqueen(int row, vector<string>&grid,vector<vector<string>>&res)
     {
         int n = (int)grid.size();
        
         if(row>=n)
         {
             res.push_back(grid);
-            return true;
+            return;
         }
 
         for(int col=0;col<n;col++)
@@ -39,7 +39,7 @@ public:
             }
         }
 
-        return false;
+        
     }
 
 
