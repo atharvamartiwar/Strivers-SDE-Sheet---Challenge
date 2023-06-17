@@ -1,6 +1,6 @@
 class Solution {
 public:
-    std::vector<long long> distance(std::vector<int>& nums) {
+    vector<long long> distance(vector<int>& nums) {
         int n = nums.size();
         vector<long long> res(n);
         unordered_map<int, vector<int>> mp;
