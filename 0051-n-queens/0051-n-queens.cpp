@@ -32,10 +32,10 @@ public:
         {
             if(isSafe(row,col,grid))
             {
-                grid[row][col]='Q';
+                grid[row][col]='Q'; //place the Queen 
 
-                Nqueen(row+1,grid,res);
-                grid[row][col]='.';
+                Nqueen(row+1,grid,res); //recursion
+                grid[row][col]='.'; //backtrack
             }
         }
 
