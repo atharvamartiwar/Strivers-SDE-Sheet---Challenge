@@ -25,30 +25,62 @@
 //         return ans;
 //     }
 // };
+// class Solution {
+// public:
+//  vector<int> postorderTraversal(TreeNode* root) {
+//         vector<int> ans;
+//         if(root==NULL) return ans;
+//         stack<TreeNode*>st1,st2;
+//         st1.push(root);
+//         while(!st1.empty())
+//         {
+//             root = st1.top();
+//             st1.pop();
+//             st2.push(root);
+//             if(root->left!=NULL) st1.push(root->left);
+//             if(root->right!=NULL) st1.push(root->right);
+            
+//         }
+
+//         while(!st2.empty())
+//         {
+//             TreeNode* r = st2.top();
+//             ans.push_back(r->val);
+//             st2.pop();
+//         }
+
+//         return ans;
+//     }
+// };
 class Solution {
 public:
- vector<int> postorderTraversal(TreeNode* root) {
+    vector<int> postorderTraversal(TreeNode* root) {
         vector<int> ans;
-        if(root==NULL) return ans;
-        stack<TreeNode*>st1,st2;
-        st1.push(root);
-        while(!st1.empty())
-        {
-            root = st1.top();
-            st1.pop();
-            st2.push(root);
-            if(root->left!=NULL) st1.push(root->left);
-            if(root->right!=NULL) st1.push(root->right);
-            
+        if (root == NULL) return ans;
+        
+        stack<TreeNode*> st;
+        TreeNode* node = root;
+        TreeNode* lastVisited = NULL;
+        
+        while (!st.empty() || node != NULL) {
+            if (node != NULL) {
+                st.push(node);
+                node = node->left;
+            } else {
+                TreeNode* x = st.top();
+                
+                // Check if right child exists and is not visited yet
+                if (x->right != NULL && x->right != lastVisited) {
+                    node = x->right;
+                } 
+                else {
+                    ans.push_back(x->val);
+                    lastVisited = x;
+                    st.pop();
+                }
+            }
         }
-
-        while(!st2.empty())
-        {
-            TreeNode* r = st2.top();
-            ans.push_back(r->val);
-            st2.pop();
-        }
-
+        
         return ans;
     }
 };
